@@ -1,0 +1,310 @@
+body {
+	width:100%;
+	overflow:hidden;
+}
+/*.headImg{
+	background:url(../images/pic_shadow_production.png) no-repeat;
+}*/
+
+
+/**遮罩层**/
+.kuang{
+	width:100%;
+	height:100%;
+	background-color:#000;
+	opacity:0.3;
+	z-index:100;
+	display:none;
+	position:absolute;
+
+
+}
+.fakeBox{
+	font-size:30px;
+	width:100%;
+	height:10%;
+	background-color:#14c6d0;
+	color:#fff;
+	line-height:230%;
+	text-align:center;
+
+}
+#schools{
+	margin:0 auto;
+  width:85%;
+	height:60%;
+	background: #fff;
+	/* Safari 4-5, Chrome 1-9*/
+	position: fixed;
+	top: 15%;
+  left:9%;
+  display:none;
+	z-index:1000;
+	border-radius:20px;
+	padding-top:9%;
+
+}
+/*.headImg{
+	position: absolute;
+	z-index:1;
+}*/
+.modal-close-btn {
+	position: absolute;
+	top: 6%;
+	right: -4%;
+	background:url(../images/close.png) no-repeat center;
+	width: 32px;
+	height: 32px;
+	padding: 32px;
+	opacity: 0.8;
+	cursor: pointer;
+	transition: 0.3s ease;
+	z-index:1000000;
+}
+.modal-close-btn:hover {
+	opacity: 1;
+}
+#schools li{
+	margin:2% 5% 4% 6%;
+	color:#4d4d4d;
+	/*border-radius: 10px 20px 50px 50px;*/
+	/*border-radius:10px;*/
+	border:1px solid #c7c7c7;
+	/*line-height:150%;*/
+	float:left;
+	width:36%;
+	padding:1%;
+
+	/*background-color:#ffe053;*/
+	list-style:none;
+	text-align:center;
+	font-size:20px;
+}
+
+.hide {
+	display:none;
+}
+/**ÿ��ҳ���С**/
+.page {
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+/**ÿ��ҳ��ĺ��Ӵ�С***/
+.page .wrap {
+
+	height:100%;
+}
+
+/**��ŮͼƬ**/
+.bgPic{
+	display:block;
+	margin:0 auto;
+	height:100%;
+	width:100%;
+
+}
+/**׼������**/
+.imgFirst{
+	display:block;
+	margin:0 auto;
+	height:16%;
+}
+/*��ҳ�Ĵ����ֲ�**/
+.flex-container {
+	margin:0 auto;
+	width:80%;
+	font-size:20px;
+
+}
+
+.flex-item{
+	float: left;
+	border:1px solid #14c6d0;
+	width:45%;
+	height:20%;
+	color:#14c6d0;
+	margin-bottom:10%;
+	text-align:center;
+	font-size:20px;
+	line-height:200%;
+}
+
+.left{
+	margin-right:8%;
+}
+/**������ʾ����**/
+.nameRemindWords,.courseRemindWords{
+	color:#06e6f2;
+	padding-left:10%;
+	padding-top:4%;
+}
+
+/**ÿ��ҳ���title������ʽ**/
+.page-title {
+	width:90%;
+
+	margin-top:20%;
+	margin-bottom:5%;
+	color:#14c6d0;
+	font-size: 22px;
+	text-align: left;
+
+
+
+}
+/**ÿ��ҳ���С���ǹ�����ʽ**/
+.nextQuestion{
+	width:30%;
+	height:30px;
+	line-height:30px;
+	background-color:#878787;
+	border-radius:20px;
+  margin-left:50%;
+	margin-top:26%;
+	color:#fff;
+	text-align:center;
+	font-weight:900;
+
+}
+.nextQuestionGreen{
+	width:30%;
+	height:30px;
+	line-height:30px;
+	background-color:#52a245;
+	border-radius:20px;
+	margin-left:50%;
+	margin-top:26%;
+	color:#fff;
+	text-align:center;
+	font-weight:900;
+}
+.triangleIcon{
+	height:auto;
+	width:25px;
+	position:absolute;
+	left:50%;
+	top:90%;
+	margin-left:-13px;
+}
+
+
+/**���������Ϣͷ����ͼƬ**/
+.inputPic {
+	display:block;
+	margin:0 auto;
+	width:95%;
+	height:auto;
+}
+/**mountian �Ĺ�����ʽ**/
+.mountain{
+	width:95%;
+	height:10%;
+}
+/**�����Ĵ����***/
+.form-container{
+	display:block;
+	margin:0 auto;
+	height:80%;
+
+}
+
+.page-4-1 .inp{
+	width:90%;
+	height:9%;
+	border:1px solid #14c6d0;
+	font-size:20px;
+	display:block;
+	margin:0 auto;
+	margin-top:6%;
+	border-radius:6px 50px 8px 20px ;
+  padding-left:6%;
+}
+#confirm{
+	position: absolute;
+	bottom: 13%;
+	left: 9%;
+	width:85%;
+	background-color:#14c6d0;
+	height:7%;
+	font-size:20px;
+	line-height:250%;
+	text-align:center;
+	transition: 0.3s ease;
+	z-index:1000000;
+	color:#fff;
+	display:none;
+}
+.profession{
+	border:1px solid #c7c7c7;
+	height:6%;
+	color:#4d4d4d;
+
+}
+.professionBtn{
+	width:30%;
+	height:30px;
+	line-height:30px;
+	background-color:#878787;
+	border-radius:10px;
+	color:#fff;
+	display:block;
+	margin:0 auto;
+	font-size:20px;
+	text-align:center;
+	margin-top:80%;
+}
+.btn{
+	width:30%;
+	height:30px;
+	line-height:30px;
+	background-color:#878787;
+	border-radius:10px;
+	color:#fff;
+	display:block;
+	margin:0 auto;
+	font-size:20px;
+	text-align:center;
+	margin-top:50%;
+}
+
+.pageChoice{
+	width:100%;
+	margin:0 auto;
+	height:40%;
+	font-size:20px;
+
+}
+.pageChoice input,label{
+	margin-top:5%;
+	color:#000;
+	font-family:楷体 ;
+	
+}
+.textRemindWord{
+	padding-left:10%;
+	padding-top:8px;
+}
+#suggestions{
+	display:block;
+	width:95%;
+	height:30%;
+	margin:0 auto;
+	border-radius:10%;
+	border:2px solid #52a245;
+	padding-top:6%;
+	padding-left:5px;
+
+}
+.lastSubmit{
+	margin:0 auto;
+	margin-top:20%;
+	border-radius:10px;
+	width:86%;
+	height:46px;
+	line-height:46px;
+	background-color: #0cd8e4;
+	color:#fff;
+	text-align:center;
+	font-size:30px;
+}

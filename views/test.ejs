@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>test</title>
+	<style type="text/css">
+		div	{
+			margin-top: 10px;
+		}
+	</style>
+	<script type="text/javascript" src="/js/zepto.min.js"></script>
+</head>
+<body>
+	<div>用户：<input type="input" name="user" value="12345"></div>
+	<div>大区：<input type="input" name="area" value="京津冀"></div>
+	<div>校区：<input type="input" name="school" value="北京回龙观"></div>
+	<div>老师：<input type="input" name="name" value="张三"></div>
+	<div>专业：<input type="input" name="subject" value="Android专业"></div>
+	<div>分数：1,2,3,4,5,1,2,3,4,5</div>
+	<div>建议：<input type="input" name="advice" value="很好"></div>
+	<div class="lastbtn"><input type="button" name="post" value="提交"></div>
+</body>
+		<script type="text/javascript">
+			var postdata = {};
+			function coverPostData(){
+				var proArr = ['large_Area','sch_Name','tea_Name','cus_Name','stu_Advice'];
+				var inputObj = $("input");
+				for(var i=1;i<inputObj.length-1;i++){
+					postdata[proArr[i-1]] = $(inputObj[i]).val();
+				}
+				postdata.tea_Attendance = 1;
+				postdata.cls_Explain = 2;
+				postdata.cls_Quesions = 3;
+				postdata.ques_Answer = 4;
+				postdata.cls_Coach = 5;
+				postdata.cls_Discipline = 1;
+				postdata.cls_Skill = 2;
+				postdata.cls_Progress = 3;
+				postdata.exam_Explain = 4;
+				postdata.class_Homework = 5;
+				postdata.user_Id= $($("input")[0]).val();
+			}
+			
+			$(".lastbtn").click(function(){
+				coverPostData();
+				var options = {
+					type: "POST",
+					url: "/score",
+					data: postdata,
+					success: function(data){					
+						alert(data.msg);	
+					},
+					error: function(error){
+						alert(error);
+					}
+				};
+				$.ajax(options);
+			});
+		</script>
+</html>

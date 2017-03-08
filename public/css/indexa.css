@@ -1,0 +1,114 @@
+/*修改select*/
+
+select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: solid 1px #000;
+
+    /*很关键：将默认的select选择框样式清除*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+
+    /*在选择框的最右侧中间显示小箭头图片*/
+    background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+
+
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+/*select结束*/
+
+html{font-size: 100px;}
+body{font-size: 0.14rem;/*实际相当于14px*/}
+*{
+    padding:0;
+    margin:0;
+}
+body{
+    width:100%;
+    height:100%;
+}
+.container{
+    width:90%;
+    height:80vh;
+    padding:10vh 5% 5vh;
+    /*background:red ;*/
+    background: url("../img/bg.jpg") no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+}@font-face{
+    font-family:"jian";
+    src:url(../font/STCAIYUN.TTF);
+}
+
+.head_title{
+    width:100%;
+    height:15vh;
+    /*background: red;*/
+    font-family:"jian";
+    font-size: 40px;;
+    font-style: italic;
+    text-align: center;
+    line-height:15vh;
+}
+
+.main{
+    width:100%;
+    height:35vh;
+    /*background: green;*/
+}
+
+.main .block{
+    /*background: red;*/
+    height:7vh;
+    font-size:.2rem;
+    line-height:7vh;
+    text-align: center;
+}
+.main .ab{
+    font-size:.16rem;
+}
+.main .blocktype{
+    margin-left:30%;
+    display: block;
+    border:none;
+    width:100%;
+    height:5vh;
+    border:1px solid salmon;
+    border-radius:10%;
+    font-size:.14rem;
+}
+.main .blocktype option{
+    border:none;
+}
+.main input{
+    margin-left:23%;
+    width:50%;
+    height: 5vh;;
+    border:none;
+    border:1px solid seagreen;
+    font-size:.2rem;
+    text-align: center;
+    /*-webkit-border-radius:30%;*/
+    /*-moz-border-radius:30%;*/
+    /*border-radius:30%;*/
+}
+.main .startbtn{
+    margin-top:2vh;
+    margin-left:25%;
+    height:5vh;
+    width:50%;
+    border:none;
+}
+.main .startbtn a{
+
+    text-decoration: none;
+    font-size:.2rem;
+    -webkit-border-radius:10%;
+    -moz-border-radius:10%;
+    border-radius:10%;
+}

@@ -1,0 +1,98 @@
+html{font-size: 100px;}
+body{font-size: 0.14rem;/*实际相当于14px*/}
+*{
+    padding:0;
+    margin:0;
+}
+html, body {
+    position: relative;
+    width:100%;
+    height: 100vh;
+    /*padding:15vh 10% 5vh;*/
+    /*background: url("../img/bg.jpg") no-repeat;*/
+    margin: 0;
+
+}
+.ques_title{
+    width: 100%;
+    height: 15vh;
+    font-size:20px;
+    text-align: center;
+    line-height: 15vh;
+}
+.ques_con{
+    width: 100%;
+    height: 70vh;
+    position: relative;
+}
+.ques_con p{
+    font-size:.25rem;
+}
+.a{
+    width: 90%;
+    height: 90%;
+    font-size: .18rem;
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    background: url("../img/bg.jpg") no-repeat;
+}
+.a input{
+    background: red;
+    display: inline-block;
+    height:3vh;
+    margin-top:1.5vh;
+}
+.red{
+    z-index: 10;
+}
+.blue{
+    z-index: 9;
+}
+.yellow{
+    z-index: 8;
+}
+.pink{
+
+    z-index: 7;
+}
+.green{
+    
+    z-index: 6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.btn{*/
+    /*width: 100%;*/
+    /*height: 15%;*/
+    /*background: palegreen;*/
+/*}*/
+
+/*.marl30{*/
+    /*width: 100%;*/
+    /*height:30%;*/
+    /*background:blue;*/
+/*}*/
+.btn_cpntainer{
+    padding-left: 20%;
+    height:3vh;
+}
+.prevbtn,.nextbtn{
+    width: 30%;
+}
+.tijiao{
+    width: 30%;
+    display: none;
+}

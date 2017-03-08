@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>xlsx</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		div	{
+			margin-top: 10px;
+		}
+	</style>
+	<script type="text/javascript" src="/js/zepto.min.js"></script>
+</head>
+<body>
+	<div>大区: <input class='area' type="text" name="area" value="京津冀"></div>
+	<div>学校: <input class='school' type="text" name="school" value="北京中关村"></div>
+	<div>专业: <input class='subject' type="text" name="subject" value="安卓"></div>
+	<div class="down"><input type="button" name="download" value="下载"></div>
+</body>
+	<script type="text/javascript">
+        function data(){
+            var area = $(".area").val();
+            var school = $(".school").val();
+            var subject = $(".subject").val();
+            return {
+                area: area,
+                school: school,
+                subject: subject
+            };
+        }
+		$(".down").click(function(){
+			var options = {
+                type: "POST",
+                url: "/down",
+                data: data(),
+                success: function(data){					
+                    if(data.msg === 'success'){
+                        window.location = data.filePath;
+                    }else{
+                        alert('没有数据');
+                    }
+                    
+                },
+                error: function(error){
+                    //alert(error);
+                }
+            };
+            $.ajax(options);
+            
+		});
+	</script>
+</html>
