@@ -39,7 +39,6 @@ $(function(){
 			last.row = now.row;
 			last.col = now.col;
 			if (last.row!=1) { now.row = last.row-1; now.col = 1; pageMove(towards.down);}
-
 		}
 	});
 
@@ -47,7 +46,6 @@ $(function(){
 	function pageMove(tw){
 		var lastPage = ".page-"+last.row+"-"+last.col;
 		var nowPage = ".page-"+now.row+"-"+now.col;
-
 		switch(tw) {
 			case towards.up:
 				outClass = 'pt-page-moveToTop';
@@ -194,7 +192,6 @@ $(function(){
 	//得到教师的名字
 	$("#uName").blur(function(){
 		temp.tea_Name = $(this).val();
-
 	});
 
 	$("#uName").bind("input propertychang",function(){
@@ -237,14 +234,6 @@ $(function(){
 	//id的假数据
 	temp.user_Id = 382356;
 
-
-
-
-
-
-
-
-
 	//表单验证
 	//当失去焦点的时候，判断不能为空
 	$("#uName").blur(function(){
@@ -267,14 +256,14 @@ $(function(){
 
 	//获得字符串的字符数
 	function getCharSize(str){
-		var realLength = 0, len = str.length, charCode = -1;
-		for (var i = 0; i < len; i++) {
-			charCode = str.charCodeAt(i);
-			if (charCode >= 0 && charCode <= 128) realLength += 1;
-			else realLength += 2;
-		}
-		return realLength;
-	}
+	 var realLength = 0, len = str.length, charCode = -1;
+	 for (var i = 0; i < len; i++) {
+	 charCode = str.charCodeAt(i);
+	 if (charCode >= 0 && charCode <= 128) realLength += 1;
+	 else realLength += 2;
+	 }
+	 return realLength;
+	 }
 
 	//当滑动整个表单页面的时候，判断是否为空
 	$(".page-4-1").on("swipe",function(){
@@ -284,16 +273,13 @@ $(function(){
 		if($("#courses").val() == ""){
 			$(".courseRemindWords").html("课程不能为空");
 		}
-
 	});
 
 	//判断教师姓名这一页如果没填的，禁止滚动
   $(".page-4-1").on("swipe",function() {
 		if ($("#uName").val() == "") {
 			$(this).unbind();
-
 		}
-
 	});
 	////判断教师姓名这一页如果填了，开始滚动
 	$("#uName").change(function(){
@@ -306,11 +292,10 @@ $(function(){
 		})
 	});
 
-	//单选框中name的值的数组
 
+	//单选框中name的值的数组
 	//单选框中id的值的数组
 	var dataObj =
-
 		[
 		["alway","sometimes","nolate","always","everyday","every"],
 		["noOrder","canBut","canUnderstan","tuChu","mindClea","bothClear"],
@@ -339,6 +324,7 @@ $(function(){
 			employmentManagerScore();
 			break;
 	}
+	//得到后台的json数据
 	function projectManagerScore(){
 		$.getJSON('/json/projectManager.json',function(data){
 			recycleDiv(data);
@@ -360,135 +346,112 @@ $(function(){
 	function recycleDiv(data){
 		for(var h= 0;h<nameArr.length;h++){
 			var arrStr=nameArr[h];
-			//点击单选框选项的时候，下一题的按钮颜色变化&& 页面滑动到下一页
 			$("input[name ="+arrStr+"]").click(function(){  //选中的单选框
 				//得到10个问题的数据
 				$("input[name = 'attendance'] ").click(function(){
 					temp.tea_Attendance = parseInt($(this).val());
-
 				});
 				$("input[name = 'onClass']").click(function(){
 					temp.cls_Explain = parseInt($(this).val());
-
 				});
 				$("input[name = 'questions'] ").click(function(){
 					temp.cls_Quesions = parseInt($(this).val());
-
 				});
 				$("input[name = 'answers'] ").click(function(){
 					temp.ques_Answer = parseInt($(this).val());
-
-
 				});
 				$("input[name = 'tutorAfterClass'] ").click(function(){
 					temp.cls_Coach = parseInt($(this).val());
-
 				});
 				$("input[name = 'discipline'] ").click(function(){
 					temp.cls_Discipline = parseInt($(this).val());
-
 				});
 				$("input[name = 'skills'] ").click(function(){
 					temp.cls_Skill = parseInt($(this).val());
-
 				});
 				$("input[name = 'progress'] ").click(function(){
 					temp.cls_Progress =parseInt($(this).val()) ;
-
 				});
 				$("input[name = 'explain'] ").click(function(){
 					temp.exam_Explain = parseInt($(this).val());
-
 				});
 				$("input[name = 'works'] ").click(function(){
 					temp.class_Homework = parseInt($(this).val());
-
 				});
-
-				//选中当前单选框的“下一题”按钮，颜色变化绿色
+				//点击单选框选项的时候，下一题的按钮颜色变化&& 页面滑动到下一页
 				$(".nextQuestion").css("background","");
 				$(this).parent(".pageChoice").siblings('.nextQuestion').
 					css("background","#14c6d0");
+				//点击下一题
+				$(this).parent(".pageChoice").siblings('.nextQuestion')
+					.on("singleTap", function(){
 
-				$(this).parent(".pageChoice").siblings('.nextQuestion').
-					on("singleTap", function(){
+					//取到当前页面的value值，来改变页码数
+					var value = Number.parseInt($(this).parents(".page").attr('value'));
+					//改变当前页面的class的page-5-1的值
+					var nowDiv = $(this).parents(".page")
+						.removeClass()
+						.addClass("page-"+(value+2)+"-1")
+						.addClass("hide")
+						.addClass("page")
+						.attr('value',value+2);
+					$(this).parents(".page").next().after(nowDiv);
 
-						//点击下一题页面滑动
-						if (isAnimating) return;
-						last.row = now.row;
-						last.col = now.col;
-						if (last.row != 15) { now.row = last.row+1; now.col = 1; pageMove(towards.up);}
-						//取到当前页面的value值
-						var value = Number.parseInt($(this).parents(".page").attr('value'));
-						//改变当前页面的class的page-5-1的值
-						var nowDiv = $(this).parents(".page")
-							.removeClass()
-							.addClass("page-"+(value+2)+"-1")
-							.addClass("hide")
-							.addClass("page")
-							.attr('value',value+2);
-							if(value>12){
-								/*$(this).parents(".page").next().after(nowDiv);*/
-								nowDiv.removeClass("page-"+(value+2)+"-1");
+					//题卡到第十题的时候，停止循环
+					if(value>12){
+						nowDiv.removeClass("page-"+(value+2)+"-1");
+					}
+					//点击下一题页面滑动
+					if (isAnimating) return;
+					last.row = now.row;
+					last.col = now.col;
+					if (last.row != 15) { now.row = last.row+1; now.col = 1;
+							pageMove(towards.up);}
+					//题卡的页数1/10
+					var pageNum = nowDiv.find(".pageNum");
+					var page = $(pageNum).html(value-2);
+
+					//修改input的name值
+					var inputArr = nowDiv.find("input");
+					for(var i=0;i<inputArr.length;i++){
+						inputArr[i].name=nameArr[value-3];
+						$("input[name = 'attendance'] ").click(function(){
+							temp.tea_Attendance = $(this).val();
+						});
+					}
+					//修改题卡的标题
+					if(value<13){
+						/*$(this).parents(".page").next().after(nowDiv);*/
+						nowDiv.find('.page-title').html(data.subject[value-3].title);
+
+						//改变单选框id的值
+						var labelArr = nowDiv.find("label");
+						labelArr.each(function(index,item){
+							$(item).attr("for",dataObj[value-3][index]);
+						});
+
+						//改变题卡的选项内容
+						labelArr.each(function(index,item){
+							$(item).html(data.subject[value-3].options[index]);
+						});
+
+						//清除所有被选中的单选框
+						var radios = $("input[type='radio']");
+						console.log(radios);
+						for(var i=0;i<radios.length;i++){
+							if(radios[i].checked){
+								radios[i].checked = false;
+							}else{
+								$(".nextQuestion").unbind();
 							}
-						//题卡的页数
-						var pageNum = nowDiv.find(".pageNum");
-						var page = $(pageNum).html(value-2);
-
-
-						//修改input的name值
-						var inputArr = nowDiv.find("input");
-						for(var i=0;i<inputArr.length;i++){
-							inputArr[i].name=nameArr[value-3];
-							$("input[name = 'attendance'] ").click(function(){
-								temp.tea_Attendance = $(this).val();
-							});
 						}
-						//修改题卡的标题
-						if(value<12){
-							/*$(this).parents(".page").next().after(nowDiv);*/
-							nowDiv.find('.page-title').html(data.subject[value-3].title);
-
-
-							//改变单选框id的值
-							var labelArr = nowDiv.find("label");
-							labelArr.each(function(index,item){
-								$(item).attr("for",dataObj[value-3][index]);
-							});
-
-							//改变题卡的选项内容
-							labelArr.each(function(index,item){
-								$(item).html(data.subject[value-3].options[index]);
-							});
-
-
-
-							//清除“下一题”按钮的颜色
-							/*var nextQuestionBtn =nowDiv.find(".nextQuestion");
-							 for (var i=0;i<nextQuestionBtn.length;i++){
-							 nextQuestionBtn[i].css("background","");
-							 }*/
-							//清除所有被选中的单选框
-							var radios = $("input[type='radio']");
-							for(var i=0;i<radios.length;i++){
-								if(radios[i].checked){
-									radios[i].checked = false;
-								}
-							}
-							//改变单选框id的值
-							var inputArr = nowDiv.find("input[type='radio']");
-							$(inputArr).each(function(index,item){
-								$(item).attr("id",dataObj[value-3][index]);
-							});
-
-
-						}
-
-
-
-
-
-					});
+						//改变单选框id的值
+						var inputArr = nowDiv.find("input[type='radio']");
+						$(inputArr).each(function(index,item){
+							$(item).attr("id",dataObj[value-3][index]);
+						});
+					}
+				});
 			});
 		}
 	}
@@ -597,11 +560,6 @@ $(function(){
 		}else{
 				alert("aaa");
 		}
-
-
-
-
-
 	});
 
 });
