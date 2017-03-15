@@ -1,10 +1,32 @@
+*{
+	padding:0;
+	margin:0;
+
+}
 body {
 	width:100%;
 	overflow:hidden;
+
 }
-/*.headImg{
-	background:url(../images/pic_shadow_production.png) no-repeat;
-}*/
+.headingContainer{
+	position:relative;
+	width:100%;
+	height:100%;
+	background-size:contain;
+	background-image:url(../images/headingPage.jpg);
+}
+.headingBtn{
+	position:absolute;
+	left:30%;
+	bottom:20%;
+	border:none;
+	width:40%;
+	height:40px;
+	background:#0cd8e3;
+	border-radius:50px;
+	color:#fff;
+	font-size:26px;
+}
 
 
 /**遮罩层**/
@@ -16,53 +38,47 @@ body {
 	z-index:100;
 	display:none;
 	position:absolute;
-
-
 }
-.fakeBox{
-	font-size:30px;
-	width:100%;
-	height:10%;
-	background-color:#14c6d0;
-	color:#fff;
-	line-height:230%;
-	text-align:center;
 
-}
 #schools{
 	margin:0 auto;
   width:85%;
 	height:60%;
 	background: #fff;
-	/* Safari 4-5, Chrome 1-9*/
 	position: fixed;
 	top: 15%;
-  left:9%;
+  left:7%;
   display:none;
 	z-index:1000;
 	border-radius:20px;
 	padding-top:9%;
 
 }
-/*.headImg{
-	position: absolute;
-	z-index:1;
-}*/
+
 .modal-close-btn {
 	position: absolute;
 	top: 6%;
 	right: -4%;
-	background:url(../images/close.png) no-repeat center;
 	width: 32px;
 	height: 32px;
 	padding: 32px;
 	opacity: 0.8;
 	cursor: pointer;
 	transition: 0.3s ease;
-	z-index:1000000;
+	z-index:10000;
 }
-.modal-close-btn:hover {
+
+.modal-close-btn:hover{
 	opacity: 1;
+	animation:rotateCloseBtn 1s;
+}
+@keyframes rotateCloseBtn {
+	0%{
+		transform:rotate(0deg);
+	}
+	100%{
+		transform:rotate(360deg);
+	}
 }
 #schools li{
 	margin:2% 5% 4% 6%;
@@ -89,10 +105,10 @@ body {
 	width:100%;
 	height:100%;
 	position:absolute;
+	background:#f6f6f6;
 }
-/**ÿ��ҳ��ĺ��Ӵ�С***/
+/****/
 .page .wrap {
-
 	height:100%;
 }
 
@@ -136,8 +152,8 @@ body {
 /**������ʾ����**/
 .nameRemindWords,.courseRemindWords{
 	color:#06e6f2;
-	padding-left:10%;
-	padding-top:4%;
+	padding-top:5%;
+	padding-left:1%;
 }
 
 /**ÿ��ҳ���title������ʽ**/
@@ -155,13 +171,11 @@ body {
 }
 /**ÿ��ҳ���С���ǹ�����ʽ**/
 .nextQuestion{
-	width:30%;
-	height:30px;
-	line-height:30px;
-	background-color:#878787;
-	border-radius:20px;
-  margin-left:50%;
-	margin-top:26%;
+	width:100%;
+	height:46px;
+	line-height: 46px;
+	background-color:#b4b4b4;
+	margin-top:36%;
 	color:#fff;
 	text-align:center;
 	font-weight:900;
@@ -189,46 +203,33 @@ body {
 }
 
 
-/**���������Ϣͷ����ͼƬ**/
-.inputPic {
-	display:block;
-	margin:0 auto;
-	width:95%;
-	height:auto;
-}
-/**mountian �Ĺ�����ʽ**/
-.mountain{
-	width:95%;
-	height:10%;
-}
-/**�����Ĵ����***/
-.form-container{
-	display:block;
-	margin:0 auto;
-	height:80%;
-
-}
-
 .page-4-1 .inp{
 	width:90%;
-	height:9%;
+	height:46px;
 	border:1px solid #14c6d0;
-	font-size:20px;
+	font-size:23px;
 	display:block;
 	margin:0 auto;
 	margin-top:6%;
-	border-radius:6px 50px 8px 20px ;
+	border-radius:6px 50px 8px 20px;
   padding-left:6%;
+}
+.count{
+	position:absolute;
+	bottom:15%;
+	width:10%;
+	left:45%;
 }
 #confirm{
 	position: absolute;
 	bottom: 13%;
-	left: 9%;
+	left: 7%;
 	width:85%;
 	background-color:#14c6d0;
 	height:7%;
-	font-size:20px;
-	line-height:250%;
+	font-size:23px;
+	font-weight:900;
+	line-height:217%;
 	text-align:center;
 	transition: 0.3s ease;
 	z-index:1000000;
@@ -239,31 +240,31 @@ body {
 	border:1px solid #c7c7c7;
 	height:6%;
 	color:#4d4d4d;
-
 }
 .professionBtn{
-	width:30%;
-	height:30px;
-	line-height:30px;
+	width:100%;
+	height:7%;
+	line-height:217%;
 	background-color:#878787;
-	border-radius:10px;
 	color:#fff;
 	display:block;
 	margin:0 auto;
-	font-size:20px;
+	font-size:23px;
+	font-weight:900;
 	text-align:center;
-	margin-top:80%;
+	margin-top:100%;
 }
 .btn{
-	width:30%;
-	height:30px;
-	line-height:30px;
+	width:100%;
+	height:7%;
+	line-height:217%;
 	background-color:#878787;
 	border-radius:10px;
 	color:#fff;
 	display:block;
 	margin:0 auto;
-	font-size:20px;
+	font-size:23px;
+	font-weight:900;
 	text-align:center;
 	margin-top:50%;
 }
@@ -275,32 +276,53 @@ body {
 	font-size:20px;
 
 }
-.pageChoice input,label{
+.pageChoice input{
+
 	margin-top:5%;
+
+
+}
+label{
+
+	width:90%;
+	overflow:hidden;
 	color:#000;
 	font-family:楷体 ;
+
+
+
+
 	
 }
 .textRemindWord{
 	padding-left:10%;
 	padding-top:8px;
+
 }
+
+/*
+label{
+	padding-left:50px;
+	cursor:pointer;
+	background:url(../images/noCheck.png) no-repeat left center;
+}
+*/
 #suggestions{
 	display:block;
-	width:95%;
+	width:86%;
 	height:30%;
 	margin:0 auto;
 	border-radius:10%;
-	border:2px solid #52a245;
+	border:2px solid #14c6d0;
 	padding-top:6%;
-	padding-left:5px;
-
+	padding-left:6%;
+	padding-right:6%;
 }
 .lastSubmit{
 	margin:0 auto;
 	margin-top:20%;
 	border-radius:10px;
-	width:86%;
+	width:100%;
 	height:46px;
 	line-height:46px;
 	background-color: #0cd8e4;

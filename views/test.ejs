@@ -9,8 +9,11 @@
 		}
 	</style>
 	<script type="text/javascript" src="/js/zepto.min.js"></script>
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
 </head>
 <body>
+	<a href="weixin://contacts/profile/gh_f909cde51807">aaa</a>
+	<div id="wxcontainer"></div>
 	<div>用户：<input type="input" name="user" value="12345"></div>
 	<div>大区：<input type="input" name="area" value="京津冀"></div>
 	<div>校区：<input type="input" name="school" value="北京回龙观"></div>
@@ -55,6 +58,17 @@
 					}
 				};
 				$.ajax(options);
+			});
+
+
+			/**************************/
+			var obj = new WxLogin({
+				id:"wxcontainer", 
+				appid: "wxb1ae167f69eb9f62",
+				scope: "snsapi_login",
+				redirect_uri: "http%3A%2F%2Ftp.feicuiedu.com%2Fwechat",
+				state: "sadasd12324ds",
+				style: "black"
 			});
 		</script>
 </html>

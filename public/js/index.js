@@ -86,7 +86,7 @@ $(function(){
 
   // 全局对象，取到所有字段的值
 	var temp = {};
-  $(".bgPic").on("click",function(){
+  $(".headingBtn").on("click",function(){
 		if (isAnimating) return;
 		last.row = now.row;
 		last.col = now.col;
@@ -171,6 +171,7 @@ $(function(){
 		$(".kuang").css("display","none");
 		$("#confirm").css("display","none");
 	});
+
 	//得到专业的value值
 	$(".profession").on("singleTap",function(){
 		/*$(this).css("background","#f48268");*/
@@ -196,9 +197,7 @@ $(function(){
 
 	$("#uName").bind("input propertychang",function(){
 		var taValue = $("#uName").val();
-		console.log(taValue);
 		var len = getCharSize(taValue);
-		console.log(len);
 		if (len >= 4 && len <= 8) {
 			$(".btn").css("background","#14c6d0");
 		}else if(len < 4){
@@ -340,44 +339,25 @@ $(function(){
 			recycleDiv(data);
 		});
 	}
+	/**改变点选框的默认样式**/
+/*	$("input[type = 'radio'] ").css("display","none");*/
 	//单选框的name属性取出来循环
 	var nameArr= ["attendance","onClass","questions","answers","tutorAfterClass",
 		"discipline","skills","progress","explain","works"];
+	var scoreNames = {attendance:"tea_Attendance",onClass:"cls_Explain",
+		questions:"cls_Quesions", answers:"ques_Answer", tutorAfterClass:"cls_Coach",
+		discipline:"cls_Discipline",skills:"cls_Skill",progress:"cls_Progress",
+		explain:"exam_Explain", works:"class_Homework"};
 	function recycleDiv(data){
 		for(var h= 0;h<nameArr.length;h++){
 			var arrStr=nameArr[h];
 			$("input[name ="+arrStr+"]").click(function(){  //选中的单选框
-				//得到10个问题的数据
-				$("input[name = 'attendance'] ").click(function(){
-					temp.tea_Attendance = parseInt($(this).val());
-				});
-				$("input[name = 'onClass']").click(function(){
-					temp.cls_Explain = parseInt($(this).val());
-				});
-				$("input[name = 'questions'] ").click(function(){
-					temp.cls_Quesions = parseInt($(this).val());
-				});
-				$("input[name = 'answers'] ").click(function(){
-					temp.ques_Answer = parseInt($(this).val());
-				});
-				$("input[name = 'tutorAfterClass'] ").click(function(){
-					temp.cls_Coach = parseInt($(this).val());
-				});
-				$("input[name = 'discipline'] ").click(function(){
-					temp.cls_Discipline = parseInt($(this).val());
-				});
-				$("input[name = 'skills'] ").click(function(){
-					temp.cls_Skill = parseInt($(this).val());
-				});
-				$("input[name = 'progress'] ").click(function(){
-					temp.cls_Progress =parseInt($(this).val()) ;
-				});
-				$("input[name = 'explain'] ").click(function(){
-					temp.exam_Explain = parseInt($(this).val());
-				});
-				$("input[name = 'works'] ").click(function(){
-					temp.class_Homework = parseInt($(this).val());
-				});
+				console.log($(this).attr('name')+'-->',parseInt($(this).val()));
+				var key = $(this).attr('name');
+				var val = scoreNames[key];
+				console.log(val);
+				temp[val] = parseInt($(this).val());
+
 				//点击单选框选项的时候，下一题的按钮颜色变化&& 页面滑动到下一页
 				$(".nextQuestion").css("background","");
 				$(this).parent(".pageChoice").siblings('.nextQuestion').
@@ -413,11 +393,9 @@ $(function(){
 
 					//修改input的name值
 					var inputArr = nowDiv.find("input");
-					for(var i=0;i<inputArr.length;i++){
+						for(var i=0;i<inputArr.length;i++){
 						inputArr[i].name=nameArr[value-3];
-						$("input[name = 'attendance'] ").click(function(){
-							temp.tea_Attendance = $(this).val();
-						});
+
 					}
 					//修改题卡的标题
 					if(value<13){
@@ -437,7 +415,6 @@ $(function(){
 
 						//清除所有被选中的单选框
 						var radios = $("input[type='radio']");
-						console.log(radios);
 						for(var i=0;i<radios.length;i++){
 							if(radios[i].checked){
 								radios[i].checked = false;
@@ -462,6 +439,7 @@ $(function(){
 
 	//全部提交按钮，传输数据
 	$(".lastSubmit").click(function(){
+		//如果建议没有填的话，传空字符传上去
 		if(!(temp.stu_Advice)){
 			temp.stu_Advice = "";
 		}
@@ -470,8 +448,11 @@ $(function(){
 			jslength++;
 		}
 		console.log(temp);
-		
-		
+		//向上滑动
+		/*if (isAnimating) return;
+		last.row = now.row;
+		last.col = now.col;
+		if (last.row != 12) { now.row = last.row+1; now.col = 1; pageMove(towards.up);}*/
 		if(true){
 			var url="/score";
 			$.ajax({
@@ -509,8 +490,6 @@ $(function(){
 						teaName.push(teacherName[i]);
 						teaSc.push(teacherScore[i]);
 					}
-
-					var myChart = echarts.init(document.getElementById('main'));
 					// 指定图表的配置项和数据
 					var option = {
 						title: {
@@ -552,6 +531,7 @@ $(function(){
 							data:teaSc
 						}]
 					};
+					var myChart = echarts.init(document.getElementById('main'));
 					myChart.setOption(option);
 					$("#bTit").html(lartit+"大区"+strtit+"排行");
 					alert(bigData.msg);
@@ -560,6 +540,11 @@ $(function(){
 		}else{
 				alert("aaa");
 		}
+
+
+
+
+
 	});
 
 });
