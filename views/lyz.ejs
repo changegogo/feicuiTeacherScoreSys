@@ -9,14 +9,23 @@
 	<link rel="stylesheet" type="text/css" href="/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/css/index.css">
 	<link rel="stylesheet" type="text/css" href="/css/animations.css">
-
 </head>
 <body>
+	<script type="text/javascript">
+		var ua = navigator.userAgent.toLowerCase();
+		var isWeixin = ua.indexOf('micromessenger') != -1;
+		var isAndroid = ua.indexOf('android') != -1;
+		var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
+		if (!isWeixin) {
+			//window.location = "/nowechat";
+		}
+    </script>
+
 	<div class="page page-1-1 page-current">
-			<div class="wrap headingContainer">
-				<!--<img class="bgPic" src="/images/headingPage.jpg" alt=""/>-->
-				<button type="button" class="headingBtn pt-page-moveCircle">进入</button>
-			</div>
+		<div class="wrap headingContainer">
+			<!--<img class="bgPic" src="/images/headingPage.jpg" alt=""/>-->
+			<button type="button" class="headingBtn pt-page-moveCircle">进入</button>
+		</div>
 	</div>
 	<div class="page page-2-1 hide">
 		<div class="kuang">
@@ -140,5 +149,6 @@
 	<script src="/js/touch.js"></script>
 	<script src="/js/index.js" type="text/javascript" charset="UTF-8"></script>
 	<script src="/js/echarts.simple.min.js"></script>
+	
 </body>
 </html>

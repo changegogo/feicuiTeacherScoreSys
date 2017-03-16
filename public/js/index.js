@@ -10,7 +10,6 @@
 
 
 $(function(){
-
 	var now = { row:1, col:1 }, last = { row:0, col:0};
 	const towards = { up:1, right:2, down:3, left:4};
 	var isAnimating = false;
@@ -230,8 +229,12 @@ $(function(){
 		temp.stu_Advice= taValue;
 
 	});
+	function urlWxId(){
+		var href = window.location.href;
+		return href.split("=")[1] || "";
+	}
 	//id的假数据
-	temp.user_Id = 382356;
+	temp.user_Id = urlWxId();
 
 	//表单验证
 	//当失去焦点的时候，判断不能为空

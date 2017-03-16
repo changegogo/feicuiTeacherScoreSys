@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var http=require('http');
+var http=require('http');  
 var querystring=require('querystring');
 var getJsonByHttp = require('../lib/httpLib');
 var querystring=require('querystring');
@@ -9,73 +9,18 @@ var path = require('path');
 var TSModle = require('../models/teacherScore');
 var makeXlsxFile = require('../lib/xlsx');
 
-var common = require('../lib/common');
+/*router.get('/',function(req, res, next){
+    var id = (Math.random()+1)*1000;
+    res.redirect('/lyz?wxid='+id);
+});*/
 
-router.get('/login.do',function(req, res, next){
-    //生成state
-    common.state = Math.random()+"";
-    var query = {
-        appid: common.appid,
-        redirect_uri: common.redirect_uri,
-        response_type: "code",
-        scope: "snsapi_login",
-        state: common.state
-    }
-    query = querystring.stringify(query);
-    //拼接微信url
-    var url = common.wxhost+'?'+query+'#wechat_redirect';
-
-    url = "callback.do?code=asdfghjklkdsfge2342d&state="+common.state;
-    res.redirect(url);
+router.get('/nowechat',function(req, res, next){
+    res.render('nowechat');
 });
 
-router.get('/callback.do', function(req, res, next){
-    var query = req.query;
-    if(query.state != common.state){
-        res.json({error: "禁止访问"});
-    }else{
-        //res.json(query);
-        //使用code，获取access_token，openid
-        var queryData = {
-            appid: common.appid,
-            secrect: common.secrect,
-            code: query.code,
-            grant_type: "authorization_code"
-        };
-        queryData = querystring.stringify(queryData);
-        var options={
-            hostname:'127.0.0.1',
-            port: 5000,
-            path:'/wxdep/sns/oauth2/access_token?'+queryData,
-            method:'GET'
-        }
-        getJsonByHttp(options,function(jsonObj){
-            var access_token = jsonObj.access_token;
-            var openid = jsonObj.openid;
-            var queryData = {
-                access_token: access_token,
-                openid: openid
-            };
-            queryData = querystring.stringify(queryData);
-            var options={
-                hostname:'127.0.0.1',
-                port: 5000,
-                path:'/wxdep/sns/userinfo?'+queryData,
-                method:'GET'
-            }
-            getJsonByHttp(options,function(jsonObj){
-                var unionid = jsonObj.unionid;
-                //res.redirect("/lyz?wxid="+unionid);
-                req.flash('x-wxcode', unionid);
-                res.redirect("/lyz");
-            });
-        });
-    }
-});
-
-
-
-/*router.get('/lyz',function(req, res, next){
+router.get('/lyz',function(req, res, next){
+    var unionid = req.flash('x-wxcode')[0];
+    res.header("wxid", unionid);
     res.render('lyz');
 });
 
@@ -200,5 +145,5 @@ function dataReady(data){
     ts.average = average;
     return ts;
 }
-*/
+
 module.exports = router;
