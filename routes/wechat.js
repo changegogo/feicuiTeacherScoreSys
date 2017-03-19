@@ -65,8 +65,8 @@ router.get('/callback.do', function(req, res, next){
             }
             getJsonByHttp(options,function(jsonObj){
                 var unionid = jsonObj.unionid;
-                //res.redirect("/lyz?wxid="+unionid);
-                req.flash('x-wxcode', unionid);
+                req.session.wxid = unionid;
+                console.log('wxid1-->'+unionid);
                 res.redirect("/lyz");
             });
         });

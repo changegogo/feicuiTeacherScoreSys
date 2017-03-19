@@ -25,7 +25,7 @@ router.get('/sns/userinfo',function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-    
+var randNum = (Math.random()+1)*10;
     res.json({ 
         "openid":"OPENID",
         "nickname":"NICKNAME",
@@ -38,7 +38,7 @@ router.get('/sns/userinfo',function(req, res, next){
             "PRIVILEGE1", 
             "PRIVILEGE2"
         ],
-        "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL"
+        "unionid": randNum
     });
 });
 

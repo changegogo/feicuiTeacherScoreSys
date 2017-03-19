@@ -19,12 +19,13 @@ router.get('/nowechat',function(req, res, next){
 });
 
 router.get('/lyz',function(req, res, next){
-    var unionid = req.flash('x-wxcode')[0];
-    res.header("wxid", unionid);
+    //判断wxid是否存在
+    var wxid = req.session.wxid;
+    if (wxid == null) {
+        return res.send("请先登录");
+    }
     res.render('lyz');
 });
-
-
 
 router.get('/xlsx',function(req, res, next){
     res.render('xlsx');
@@ -88,6 +89,12 @@ router.post('/down',function(req, res, next){
 
 //返回排名数据
 router.post('/score',function(req, res, next){
+    var wxid = req.session.wxid;
+    if(wxid == null){
+        return res.send("请通过正当的提交方式提交");
+    }
+    console.log('wxid2-->',wxid);
+    req.session.wxid = null;
     var data = req.body;
     //如果同一个userid对同一个老师进行评论是禁止的
     TSModle.getTeacherScore({critic: data.user_Id,name: data.tea_Name})
