@@ -1,15 +1,21 @@
-
-
-
-//解决移动端click延迟事
-/*window.addEventListener( "load", function() {
-	fastClick.attach(document.body);
-}, false );*/
-
-
-
-
 $(function(){
+	window.onload = function(){
+		document.documentElement.style.fontSize = document.documentElement.clientWidth/10.8 +'px';
+		var deviceWidth = document.documentElement.clientWidth;
+		if(deviceWidth>1080){
+			deviceWidth = 1080;
+		}
+		//100px = 1rem
+		document.documentElement.style.fontSize = deviceWidth/10.8 +'px';
+	};
+
+
+
+//这里我们给个定时器来实现页面加载完毕再进行字体设置
+	setTimeout(function() {
+		//初始化
+		//setFontSize();
+	}, 100);
 	var now = { row:1, col:1 }, last = { row:0, col:0};
 	const towards = { up:1, right:2, down:3, left:4};
 	var isAnimating = false;
@@ -30,17 +36,6 @@ $(function(){
 			if (last.row != 16) { now.row = last.row+1; now.col = 1; pageMove(towards.up);}
 		}
 	});
-
-	$(".page.pageCanSwipe").swipeDown(function(){
-		downSwipping();
-		function downSwipping(){
-			if (isAnimating) return;
-			last.row = now.row;
-			last.col = now.col;
-			if (last.row!=1) { now.row = last.row-1; now.col = 1; pageMove(towards.down);}
-		}
-	});
-
 
 	function pageMove(tw){
 		var lastPage = ".page-"+last.row+"-"+last.col;
@@ -85,7 +80,7 @@ $(function(){
 
   // 全局对象，取到所有字段的值
 	var temp = {};
-  $(".headingBtn").on("click",function(){
+  $(".headingBtn").on("singleTap",function(){
 		if (isAnimating) return;
 		last.row = now.row;
 		last.col = now.col;
@@ -122,7 +117,8 @@ $(function(){
 			$(".area").css({"background":"","color":"#14c6d0"});
 			$(this).css({"background":"#14c6d0","color":"#fff"});
 			/*$(".fakeBox").css("display","none");*/
-			$("#confirm").css({"display":"block","background":"#14c6d0"});
+			/*$("#confirm").fadeIn(1000);*/
+			$("#confirm").css({"display":"block","background":"#878787"});
       $(".kuang").show(5000);
 			$("#schools").css({"display":"block"});
 
@@ -138,7 +134,7 @@ $(function(){
 				$("li").on("singleTap",function(){
 					$("li").css({"border":"","color":""});
 					$(this).css({"border":"1px solid #14c6d0","color":"#14c6d0"});
-
+					$("#confirm").css("background-color"," #14c6d0");
 					/*$("#schools").css("display","none");
 					$(".kuang").css("display","none");*/
 					$("#confirm").on("singleTap",function(){
@@ -156,8 +152,6 @@ $(function(){
 					temp.sch_Name = schoolName;
 					/*temp.sch_Name = liIndex;*/
 					console.log(temp.sch_Name);
-
-					/*wholeDataArr = eval('('+(JSON.stringify(schoolObj)+JSON.stringify(json2)).replace(/}{/,',')+')');*/
 				})
 			}
 		});
@@ -169,6 +163,7 @@ $(function(){
 		$("#schools").css("display","none");
 		$(".kuang").css("display","none");
 		$("#confirm").css("display","none");
+		$("#confirm").unbind();
 	});
 
 	//得到专业的value值
@@ -185,9 +180,7 @@ $(function(){
 			if (last.row != 12) { now.row = last.row+1; now.col = 1; pageMove(towards.up);}
 
 		});
-		/*alert($(this).html());*/
 		temp.cus_Name = $(this).html();
-
 	});
 	//得到教师的名字
 	$("#uName").blur(function(){
@@ -221,20 +214,13 @@ $(function(){
 		});
 	});
 
-
-
 	//建议框的提示文字
 	$("#suggestions").bind("input propertychang",function(){
 		var taValue = $("#suggestions").val();
 		temp.stu_Advice= taValue;
 
 	});
-	function urlWxId(){
-		var href = window.location.href;
-		return href.split("=")[1] || "";
-	}
-	//id的假数据
-	temp.user_Id = urlWxId();
+
 
 	//表单验证
 	//当失去焦点的时候，判断不能为空
@@ -244,7 +230,6 @@ $(function(){
 		}else{
 			$(".nameRemindWords").html("");
 		}
-		/*ckname();*/
 	});
 
 	$("#courses").blur(function(){
@@ -266,34 +251,6 @@ $(function(){
 	 }
 	 return realLength;
 	 }
-
-	//当滑动整个表单页面的时候，判断是否为空
-	$(".page-4-1").on("swipe",function(){
-		if($("#uName").val() == ""){
-			$(".nameRemindWords").html("姓名不能为空");
-		}
-		if($("#courses").val() == ""){
-			$(".courseRemindWords").html("课程不能为空");
-		}
-	});
-
-	//判断教师姓名这一页如果没填的，禁止滚动
-  $(".page-4-1").on("swipe",function() {
-		if ($("#uName").val() == "") {
-			$(this).unbind();
-		}
-	});
-	////判断教师姓名这一页如果填了，开始滚动
-	$("#uName").change(function(){
-		$(".page-4-1").on("swipe",function(){
-			//向上滑动
-			if (isAnimating) return;
-			last.row = now.row;
-			last.col = now.col;
-			if (last.row != 12) { now.row = last.row+1; now.col = 1; pageMove(towards.up);}
-		})
-	});
-
 
 	//单选框中name的值的数组
 	//单选框中id的值的数组
@@ -328,22 +285,21 @@ $(function(){
 	}
 	//得到后台的json数据
 	function projectManagerScore(){
-		$.getJSON('/json/projectManager.json',function(data){
+		$.getJSON('json/projectManager.json',function(data){
 			recycleDiv(data);
 	});
 	}
 	function masterScore(){
-		$.getJSON('/json/headmaster.json',function(data){
+		$.getJSON('json/headmaster.json',function(data){
 			recycleDiv(data);
 		});
 	}
 	function employmentManagerScore(){
-		$.getJSON('/json/employmentManager.json',function(data){
+		$.getJSON('json/employmentManager.json',function(data){
 			recycleDiv(data);
 		});
 	}
-	/**改变点选框的默认样式**/
-/*	$("input[type = 'radio'] ").css("display","none");*/
+
 	//单选框的name属性取出来循环
 	var nameArr= ["attendance","onClass","questions","answers","tutorAfterClass",
 		"discipline","skills","progress","explain","works"];
@@ -355,10 +311,8 @@ $(function(){
 		for(var h= 0;h<nameArr.length;h++){
 			var arrStr=nameArr[h];
 			$("input[name ="+arrStr+"]").click(function(){  //选中的单选框
-				console.log($(this).attr('name')+'-->',parseInt($(this).val()));
 				var key = $(this).attr('name');
 				var val = scoreNames[key];
-				console.log(val);
 				temp[val] = parseInt($(this).val());
 
 				//点击单选框选项的时候，下一题的按钮颜色变化&& 页面滑动到下一页
@@ -367,18 +321,24 @@ $(function(){
 					css("background","#14c6d0");
 				//点击下一题
 				$(this).parent(".pageChoice").siblings('.nextQuestion')
-					.on("singleTap", function(){
+				.on("singleTap", function(){
+
 
 					//取到当前页面的value值，来改变页码数
 					var value = Number.parseInt($(this).parents(".page").attr('value'));
 					//改变当前页面的class的page-5-1的值
+
 					var nowDiv = $(this).parents(".page")
 						.removeClass()
 						.addClass("page-"+(value+2)+"-1")
 						.addClass("hide")
 						.addClass("page")
 						.attr('value',value+2);
-					$(this).parents(".page").next().after(nowDiv);
+
+						setTimeout(function(){
+							$(this).parents(".page").next().after(nowDiv);
+						},1000);
+
 
 					//题卡到第十题的时候，停止循环
 					if(value>12){
@@ -435,11 +395,19 @@ $(function(){
 			});
 		}
 	}
-
-
-
-
-
+	//id的假数据
+	function getUrlId(){
+		var wholeAddress=window.location.href;
+		console.log(wholeAddress);
+		var newWholeAddress=wholeAddress.split("?");
+		var idWholeAddress=newWholeAddress[1];
+		var newIdWholeAddress=idWholeAddress.split("=");
+		temp.user_Id=newIdWholeAddress[1];
+		/*console.log(temp.user_Id instanceof Array);
+		 console.log(temp.user_Id);*/
+	}
+	temp.user_Id=123;
+	//getUrlId();
 	//全部提交按钮，传输数据
 	$(".lastSubmit").click(function(){
 		//如果建议没有填的话，传空字符传上去
@@ -543,11 +511,6 @@ $(function(){
 		}else{
 				alert("aaa");
 		}
-
-
-
-
-
 	});
 
 });
