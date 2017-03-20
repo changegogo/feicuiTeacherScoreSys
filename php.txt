@@ -1,0 +1,518 @@
+基本语法
+<?php 开始
+?>结束
+//单行
+global
+static
+
+两个基本的输出方式： echo和print
+echo-可以输出一个或多个字符串
+print-只允许输出一个字符串，返回值总为1
+echo输出的速度比print快，echo没有返回值，print有返回值1
+echo是一个语言结构，使用的时候可以不用加括号，也可以加上括号：echo或echo()
+
+echo输出的字符串中可以包含 HTML 标签
+<?php
+echo "<h2>PHP 很有趣！</h2>";
+echo "Hello world!<br>";
+echo "我要学 PHP！";
+echo "这是一个", "字符串，", "使用了", "多个", "参数。";
+?>
+
+print同样是一个语言结构，可以使用括号，也可以不使用括号：print 或 print().
+字符串可以包含HTML标签
+
+PHP 5 数据结构
+String(字符串),Integer(整型),Float(浮点型),Boolean(布尔型),Array(数组),Object(对象),Null(空值)
+
+var_dump()函数返回变量的数据类型和值。例如：$x = 123; var_dump($x); //int(123)
+PHP对象
+对象数据类型也可以用于存储数据。
+在PHP中，对象必须声明。
+首先，你必须使用class关键字声明类对象。类是可以包含属性和方法的结构
+PHP NULL值
+NULL 值表示变量没有值。NULL 是数据类型为NULL 的值
+NULL 值知名一个变量是否为控制。同样可用于数据空值和NULL值的区别。
+可以通过设置变量值为NULL 来清空变量数据。
+PHP 5常量
+常量值被定义后，在脚本的其他任何地方都不能被改变
+常量是一个简单值的标识符。该值在脚本中不能改变。
+一个常量由英文字母、下划线、和数字组成，但数字不能作为首位出现。（常量名不要加$修饰符）
+注意：常量在整个脚本中都可以使用
+设置常量，使用define()函数，函数语法如下：
+bool define(string $name, mixed $value [,bool $case_insensitive = false])
+该函数有三个参数：
+name: 必选参数，常量名称，即标识符。
+value：必选参数，常量的值。
+case_insensitive：可选参数，如果设置为true，该变量则大小写不敏感。默认为大小写敏感的
+PHP 并置运算符
+在PHP中，只有一个字符串运算符。
+并置运算符（.）用于把两个字符串值连接起来。
+strlen strpos
+
+PHP组合比较符
+<=>
+$a <=> $b
+如果 $a > $b ,返回1；
+如果 $a = $b ,返回0；
+如果 $a < $b ,返回-1
+PHP中创建数组
+在PHP中，array()函数用于创建数组
+array();
+在PHP 中，有三种类型的数组：
+数值数组-带有数字ID键的数组
+关联数组-带有指定的键的数组，每个键关联一个值
+多维数组-包含一个或多个数组的数组
+count()函数用于返回数组的长度（元素的数量）
+<?php
+	$cars = array("a","b","c");
+	echo count($cars);
+?>
+遍历数值数组
+<?php
+	$cars = array("a","b","c");
+	$arrlength = count($cars);
+	for($x=0; $x<arrlength;$x++){
+		echo $cars[$x];
+		echo "<br>";
+	}
+?>
+PHP关联数组
+关联数组是使用您分配给数组的指定的键的数组
+这里有两种穿件关联数组的方法：
+$age = array("Peter"=>"35, "Ben"=>"37", "Lina"=>"25");
+or:
+$age['Peter'] = "35";
+$age['Ben'] = "37";
+$age['Lina'] = "25";
+遍历关联数组
+使用foreach循环
+<?php
+	$age = array("Peter"=>"35, "Ben"=>"37", "Lina"=>"25");
+	foreach($age as $x=>$x_value){
+		echo "Key=" . $x . ",Value=" . $x_value;
+		echo "<br>";
+	}
+?>
+PHP - 数组排序函数
+在本章中，我们将一一介绍下列 PHP 数组排序函数：
+sort() - 对数组进行升序排列
+rsort() - 对数组进行降序排列
+asort() - 根据关联数组的值，对数组进行升序排列
+ksort() - 根据关联数组的键，对数组进行升序排列
+arsort() - 根据关联数组的值，对数组进行降序排列
+krsort() - 根据关联数组的键，对数组进行降序排列
+
+PHP 超级全局变量
+PHP 魔术变量
+__LINE__ 文件中的当前行号。
+__FILE__ 文件的完整路径和文件名
+__DIR__ 文件所在的目录。
+__FUNCTION__ 函数名称
+__CLASS__ 类的名称
+__TRAIT__ PHP实现了代码服用的一个方法，称为traits。
+PHP 命名空间可以解决以下两类问题：
+1.用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。
+2.为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名(或简短)的名称，提高源代码的可读性。
+定义命名空间
+命名空间通过关键字namespace来声明。如果一个文件中包含命名空间，它必须在其它所有代码之前声明命名空间。语法格式如下：
+<?php
+	// 定义代码在 'MyProject' 命名空间中
+	namespace MyProject;
+	
+	// ... 代码 ...
+?>
+也可以在同一个文件中定义不同的命名空间代码，如：
+<?php
+	namespace MyProject1;
+	// MyProject1 命名空间中的PHP代码
+	
+	namespace MyProject2;
+	// MyProject2 命名空间中的PHP代码
+	
+	// 另一种语法
+	namespace MyProject3 {
+		// MyProject3 命名空间中的PHP代码
+	}
+?>
+
+在声明命名空间之前唯一合法的代码是用于定义源文件编码方式的 declare 语句。所有PHP代码包括空白符都不能出现在命名空间的声明之前。
+<?php
+	declare(encoding='UTF-8');
+	namespace MyProject{
+		
+	}
+	namespace {// 全局代码
+		
+	}
+?>
+子命名空间
+与目录和文件的关系很像，PHP命名空间也允许指定层次化的命名空间的名称。因此，命名空间的名字可以使用分层次的方式定义：
+<?php
+	namespace MyProject\Sub\Level; //声明分层次的单个命名空间
+	
+	const CONNECT_OK = 1;
+	class Connection{ /*...*/ }
+	function Connect(){ /*...*/ }
+?>
+上面的例子创建了常量 MyProject\Sub\Level\CONNECT_OK,类 MyProject\Sub\Level\Connection 和函数
+MyProject\Sub\Level\Connect
+命名空间的使用
+PHP命名空间中的类名可以通过三种方式引用：
+1.非限定名称，或不包含前缀的类名称
+2.限定名称，或包含前缀的名称
+3.完全限定名称，或包含了全局的前缀操作符的名称
+下面是一个使用这三种方式的实例：
+file1.php 文件代码
+<?php
+	namespace Foo\Bar\subnamespace;
+	
+	const FOO = 1;
+	function foo() {}
+	class foo{
+		static function staticmethod(){}
+	}
+?>
+
+file2.php文件代码
+<?php
+	namespace Foo\Bar;
+	include 'file1.php';
+	
+	const FOO = 2;
+	function foo(){}
+	class foo{
+		static function staticmethod(){}
+	}
+	
+	/* 非限定名称 */
+	foo(); // 解析为 Foo\Bar\foo 
+	foo::staticmethod(); // 解析为类 Foo\Bar\foo的静态方法staticmethod
+	echo FOO; // 解析为constant Foo\Bar\FOO
+	
+	/* 限定名称 */
+	subnamespace\foo(); // 解析为函数 Foo\Bar\subnamespace\foo
+	subnamespace\foo::staticmethod(); // 解析为Foo\Bar\subnamespace\foo,
+									  // 以及类的方法 staticmethod
+	echo subnamespace\FOO; //解析为常量 Foo\Bar\subnamespace\FOO
+	
+	/* 完全限定名称 */
+	\Foo\Bar\foo(); // 解析为函数 Foo\Bar\foo
+	\Foo\Bar\foo::staticmethod(); // 解析为类 Foo\Bar\foo，以及类的方法 staticmethod
+	echo \Foo\Bar\FOO; //解析为常量 Foo\Bar\FOO
+?>
+
+命名空间和动态语言特征
+PHP 命名空间的实现受到其语言自身的动态特征的影响。
+因此，如果将下面的代码转换到命名空间中，动态访问元素。
+example1.php 文件代码：
+<?php
+	class classname{
+		function __construct(){
+			echo __METHOD__,"\n";
+		}
+	}
+	function funcname(){
+		echo __FUNCTION__,"\n";
+	}
+	const constname = "global";
+	
+	$a = 'classname';
+	$obj = new $a; // 打印 classname::__construct
+	$b = 'funcname';
+	$b(); // 打印 funcname
+	echo constant('constname'), "\n"; // 打印global
+?>
+动态访问命名空间的元素
+<?php
+	namespace namespacename;
+	class classname{
+		funcname __construct(){
+			echo __METHOD__,"\n";
+		}
+	}
+	function funcname(){
+		echo __FUNCTION__,"\n";
+	}
+	const constname = "namespaced";
+	
+	include "example1.php";
+	
+	$a = 'classname';
+	$obj = new $a; // 打印 classname::__construct
+	$b = 'funcname';
+	$b(); // 打印 funcname
+	echo constant('constname'),"\n"; //打印 global
+	
+	$a = '\namespacename\classname';
+	$obj = new $a; //打印 namespacename\classname::__construct
+	$a = 'namespacename\classname';
+	$obj = new $a; //也打印 namespacename\classname::__construct
+	$b = 'namespacename\funcname';
+	$b(); //打印 namespacename\funcname
+	$b = '\namespacename\funcname';
+	$b(); //也打印 namespacename\funcname
+	echo constant("\namespacename\constname"),"\n"; //打印 namespaced
+	echo constant('namespacename\constname'),"\n"; // 也打印 namespaced
+?>
+namespace关键字和__NAMESPACE__常量
+PHP 支持两种抽象的访问当前命名空间内部元素的方法，__NAMESPACE__魔术变量和namespace关键字
+常量__NAMESPACE__的值是包含当前命名空间名称的字符串。在全局中，不包含在任何命名空间中的代码，它包含一个空的空字符串
+__NAMESPACE__实例，在命名空间中的代码
+<?php
+	namespacename MyProject;
+	
+	echo '"',__NAMESPACE__,'"'; // 输出 "MyProject"
+?>
+
+__NAMESPACE__示例，全局代码
+<?php
+	echo '"',__NAMESPACE__,'"'; // 输出 ""
+?>
+
+常量 __NAMESPACE__在动态创建名称时很有用，例如：
+使用__NAMESPACE__动态创建名称
+<?php
+	namespace MyProject;
+	
+	function get($classname){
+		$a = __NAMESPACE__ . '\\' . $classname;
+		return new $a;
+	}
+?>
+
+关键字 namespace 可用来显示访问当前命名空间或子命名空间中的元素。它等价于类中的self操作符。
+namespace操作符，命名空间中的代码
+<?php
+	namespace MyProject;
+	
+	use blah\blah as mine;
+	
+	blah\mine();
+	namespace\blah\mine();
+	
+	namespace\func();
+	namespace\sub\func();
+	namespace\cname::method();
+	$a = new namespace\sub\func\cname();
+	$b = namespace\CONSTANT;
+?>
+
+使用命名空间：别名/导入
+PHP 命名空间支持有两种使用别名或导入方式： 为类名称使用别名，或为命名空间名称使用别名。
+注意PHP 不支持导入函数或常量。
+在PHP中，别名是通过操作符use来实现的。下面是三种例子
+1.使用use操作符导入/使用别名
+<?php
+	namespace foo;
+	use My\Full\Classname as Another;
+	
+	//下面的例子与 use My\Full\NSname as NSname 相同
+	use My\Full\NSname;
+	
+	//导入一个全局类
+	use \ArrayObject;
+	
+	$obj = new namespace\Another; 实例化 foo\Another 对象必须声明。
+	$obj = new Another; //实例化 My\Full\Classname 对象
+	NSname\subns\func();// 调用函数My\Full\NSname\subns\func
+	$a = new ArrayObject(array(1)); //实例化 ArrayObject 对象
+	// 如果不使用 "use \ArrayObject",则实例化一个foo\ArrayObject 对象
+?>
+2.一行中包含多个use语句
+<?php
+	use My\Full\Classname as Another, My\Full\NSname;
+	
+	$obj = new Another; //实例化 My\Full\Classname 对象
+	NSname\subns\func(); //调用函数 My\Full\NSname\func
+?>
+导入操作是在编译执行的，但动态的类名称、函数名称或常量名则不是。
+3.导入和动态名称
+<?php
+	use My\Full\Classname as Another, My\Full\NSname;
+	
+	$obj = new Another; //实例化一个 My\Full\Classname 对象
+	$a = 'Another';
+	$obj = new $a; //实例化一个Another对象
+?>
+4、导入和完全限定名称
+<?php
+	use My\Full\Classname as Another, My\Full\NSname;
+	
+	$obj = new Another; // 实例化 My\Full\Classname 对象
+	$obj = new \Another; //实例化 Another 对象
+	$obj = new Another\thing; // 实例化My\Full\Classname\thing 对象
+	$obj = new \Another\thing; //实例化Another\thing 对象
+?>
+
+名称解析遵循下列规则：
+对完全限定名称的函数，类和常量的调用在编译时解析。例如 new \A\B 解析为类 A\B。
+所有的非限定名称和限定名称（非完全限定名称）根据当前的导入规则在编译时进行转换。例如，如果命名空间 A\B\C 被导入为 C，那么对 C\D\e() 的调用就会被转换为 A\B\C\D\e()。
+在命名空间内部，所有的没有根据导入规则转换的限定名称均会在其前面加上当前的命名空间名称。例如，在命名空间 A\B 内部调用 C\D\e()，则 C\D\e() 会被转换为 A\B\C\D\e() 。
+非限定类名根据当前的导入规则在编译时转换（用全名代替短的导入名称）。例如，如果命名空间 A\B\C 导入为C，则 new C() 被转换为 new A\B\C() 。
+在命名空间内部（例如A\B），对非限定名称的函数调用是在运行时解析的。例如对函数 foo() 的调用是这样解析的：
+在当前命名空间中查找名为 A\B\foo() 的函数
+尝试查找并调用 全局(global) 空间中的函数 foo()。
+在命名空间（例如A\B）内部对非限定名称或限定名称类（非完全限定名称）的调用是在运行时解析的。下面是调用 new C() 及 new D\E() 的解析过程： new C()的解析:
+在当前命名空间中查找A\B\C类。
+尝试自动装载类A\B\C。
+new D\E()的解析:
+在类名称前面加上当前命名空间名称变成：A\B\D\E，然后查找该类。
+尝试自动装载类 A\B\D\E。
+为了引用全局命名空间中的全局类，必须使用完全限定名称 new \C()。
+
+PHP错误处理
+错误处理方法：
+简单的 “die()” 语句
+自定义错误和错误触发器
+错误报告
+
+基本的错误处理：使用die()函数
+
+创建自定义错误处理器
+创建一个自定义的错误处理器非常简单。我们很简单的创建一个专用函数，可以在PHP 中
+发生错误时调用该函数。
+该函数必须有能力处理至少两个参数(error level()和error message()),但是可以接受最多五个参数
+(可选的：file,line-number和error context)
+语法：
+error_function(error_level, error_message, error_file, error_line,error_context)
+参数含义
+error_level: 必需。为用户定义的错误规定错误报告级别。必需为一个数字
+error_message: 必需。为用户定义的错误规定错误消息。
+error_file: 可选。规定错误发生的文件名。
+error_line: 可选。规定错误发生的行号。
+error_context: 可选。规定一个数组，包含了当错误发生时在用的每个变量以及他们的值。
+错误报告级别：
+2 E_WARNING 非致命的run-time错误。不暂停脚本执行
+8 E_NOTICE run-time通知。在脚本发现可能有错误时发生，但也可能在脚本正常运行时发生。
+256 E_USER_ERROR 致命的用户生成的错误。这类似于程序员使用PHP 函数trigger_error()设置的E_ERROR.
+512 E_USER_WARNING 非致命的用户生成的警告。这类似于程序员使用PHP 函数trigger_error()设置的E_WARNING.
+1024 E_USER_NOTICE 用户生成的通知。这类似于程序员使用PHP 函数trigger_error()设置的E_NOTICE。
+4096 E_RECOVERABLE_ERROR 可以捕获的致命错误。类似E_ERROR,但可被用户定义的处理程序捕获。
+8191 E_ALL 所有错误和警告。
+
+设置错误处理程序
+PHP的默认错误处理程序是内建的错误处理程序。我们打算把上面的函数改造为脚本运行期间的默认错误处理程序。
+可以修改错误处理程序，使其仅应用到某些错误，这样脚本就能以不同的方式来处理不同的错误。然而，在本例中，我们打算针对所有错误来使用我们自定义的错误处理程序。
+ser_error_handler("customError");
+由于我们希望我们的自定义函数处理所有错误，set_error_handler()仅需要一个参数，可以添加第二个参数来规定错误级别。
+
+触发错误
+在脚本中用户输入错误的位置，当用户的输入无效时触发错误是很有用的。在php中，这个任务由trigger_error()函数完成。
+实例：
+在本例中，如果“test”变量大于1，就会发生错误：
+<?php
+	$test = 2;
+	if($test > 1){
+		trigger_error(变量值必须小于等于1);
+	}
+?>
+错误记录
+在默认的情况下，根据在php.ini中的error_log配置，php向服务器的记录系统或文件发送错误记录。通过使用error_log()函数，您可以向指定的文件或远程目的地发送错误记录。
+
+php异常处理
+异常用于在指定的错误发生时改变脚本的正常流程。
+异常是什么
+php5提供了一种新的面向对象的错误处理方法。
+异常处理用于在指定的错误（异常）情况发生时改变脚本的正常流程。这种情况成为异常。
+当异常被触发时，通常会发生：
+1.当前代码状态被保存
+2.代码执行被切换到预定义（自定义）的异常处理器函数
+3.根据情况，处理器也许会从保存的代码状态重新开始执行代码，终止脚本执行，或从代码中另外的位置继续执行脚本我们将展示不同的错误处理方法
+4.异常的基本使用
+5.创建自定义的异常处理器
+6.多个异常
+7.重新抛出异常
+8.设置顶层异常处理器
+注释：异常应该仅仅在错误情况下使用，而不应该用于在一个指定的点跳转到代码的另一个位置。
+异常的基本使用
+当异常被抛出时，其后的代码不会继续执行，php会尝试查找匹配的“catch”代码块。
+如果异常没有被捕获，而且又没有使用set_exception_handler()作相应的处理的话，那么将发生一个严重的错误（致命错误），而且输出“Uncaught Exception”(未捕获异常)的错误消息。
+
+Try、throw和catch
+1.Try-使用的异常函数位于“try”代码块内。如果没有触发异常，则代码将照常继续执行。但是如果异常触发，会抛出一个异常。
+2.Throw-里规定如何触发异常。每一个“throw”必须对应至少一个“catch”。
+3.chath-"catch"代码块会捕获异常，并创建一个包含异常信息的对象。
+
+创建一个自定义的Exception类
+该类必须是exception类的一个扩展
+
+设置顶层异常处理器
+set_exception_handler()函数可设置处理所有未捕获异常的用户定义函数
+
+异常的规则
+1.需要进行异常处理的代码应该放在try代码块中，以便捕获潜在的异常。
+2.每个try或throw代码块必须至少拥有一个对应的catch代码块
+3.使用多个catch代码块可以捕获不同种类的异常
+4.可以在try代码块内的catch代码块中抛出（再次抛出）异常。
+如果抛出了异常，就必须要捕获它。
+
+PHP过滤器
+PHP过滤器用于验证和过滤来自非安全来源的数据，比如用户的输入。
+什么是PHP过滤器
+PHP过滤器用于验证和过滤来自非安全来源的数据
+测试、验证和过滤用户输入或自定义数据是任何web应用程序的重要组成部分。
+PHP的过滤器扩展的设计目的是使过滤更轻松快捷。
+
+为什么使用过滤器
+几乎所有的web应用程序都依赖外部的输入。这些数据通常来自用户或其他应用程序比如web服务。通常使用过滤器，您能够确保应用程序获取正确的输入类型。
+应该始终对外部数据进行过滤。
+输入过滤是最重要的应用程序安全课题之一。
+什么是外部数据？
+来自表单的输入数据
+cookies
+web services data
+服务器变量
+数据库查询结果
+
+函数和过滤器
+filter_var() - 通过一个指定的过滤器来过滤单一的变量
+filter_var_array() - 通过相同的或不同的过滤器来过滤多个变量
+filter_input - 获取一个输入变量，并对它进行过滤
+filter_input_array - 获取多个输入变量，并通过相同的或不同的过滤器对他们进行过滤
+
+Validating和Sanitizing
+有两种过滤器：
+Validating过滤器：
+用于验证用户输入
+严格的格式规则(比如URL和E-Mail验证)
+如果成功则返回预期的类型，如果失败则返回FALSE
+Sanitizing过滤器：
+用于允许或禁止字符串中指定的字符
+无数据格式规则
+始终返回字符串
+
+选项和标志
+选项和标志用于向指定的过滤器添加额外的过滤选项。
+不同的过滤器有不同的选项和标志。
+
+使用Filter Callback
+通过使用FILTER_CALLBACK过滤器，可以调用自定义的函数，把它作为一个过滤器使用。这样，我们就拥有了数据过滤的完全控制权。
+您可以创建自己的自定义函数，也可以使用已存在的PHP函数。
+将您准备用到的过滤器的函数，按指定选项的规定方法进行规定。在关联数组中，带有名称“options”。
+
+PHP JSON
+在php5.2.0及以上版本已经内置JSON扩展
+json函数
+json_encode 对变量进行json编码
+json_decode 对json格式的字符串进行编码，转换为PHP 变量
+json_last_error 返回最后发生的错误
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
